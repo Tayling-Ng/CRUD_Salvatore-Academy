@@ -21,9 +21,9 @@ app.get('/personagem', function (req, res) {
 // Requisição GET: http://localhost:3000/personagem/id
 app.get('/personagem/:id', function (req, res) {
     
-    const id = req.params.id // Acessando o parâmetro id
+    const id = req.params.id // Acessar o parâmetro id
 
-    const item = lista[id - 1] // Acessando o item da lista usando id - 1
+    const item = lista[id - 1] // Acessar o item da lista usando id - 1
 
     res.send(item)
 })
@@ -33,15 +33,30 @@ app.get('/personagem/:id', function (req, res) {
 // Requisição POST: http://localhost:3000/personagem
 app.post('/personagem', function (req, res) {
 
-    const body = req.body // Acessando o corpo da requisição
+    const body = req.body // Acessar o corpo da requisição
     // console.log(body)
 
-    const novoItem = body.nome // Acessando a propriedade nome no corpo da requisião
+    const novoItem = body.nome // Acessar a propriedade nome no corpo da requisião
 
-    lista.push(novoItem) // Adiciona o valor da propriedade na lista
+    lista.push(novoItem) // Adicionar o valor da propriedade na lista
 
     res.send('Item adicionado com sucesso!: ' + novoItem)
     // console.log(lista)
+})
+
+// Endpoint Update: [PUT] /personagem
+// Requisição PUT: http://localhost:3000/personagem/1
+app.put('/personagem/:id', function (req, res) {
+
+    const id = req.params.id // Acessar o parâmetro id
+
+    const body = req.body // Acessar o corpo da requisição
+    
+    const novoItem = body.nome // Acessar a propriedade nome no corpo da requisião
+
+    lista[id - 1] = novoItem // Atualizar na lista o novo item pelo id - 1
+
+    res.send('Item atualizado com sucesso!: ' + novoItem)
 })
 
 app.listen(3000)
