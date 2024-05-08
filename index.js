@@ -40,17 +40,17 @@ app.post('/personagem', function (req, res) {
 
     // Validação: Verificar se a palavra "nome" está no corpo da requisição
     if (!novoItem) {
-        return res.send('O corpo da requisição tem que conter a propriedade "nome".')
+        return res.status(400).send('O corpo da requisição tem que conter a propriedade "nome".')
     }
 
     // Validação: Verificar se o novo item já está na lista
     if (lista.includes(novoItem)) {
-        return res.send('Esse item já existe na lista.')
+        return res.status(409).send('Esse item já existe na lista.')
     }
 
     lista.push(novoItem) // Adicionar o valor da propriedade na lista
 
-    res.send('Item adicionado com sucesso!: ' + novoItem)
+    res.status(201).send('Item adicionado com sucesso!: ' + novoItem)
     // console.log(lista)
 })
 
@@ -66,17 +66,17 @@ app.put('/personagem/:id', function (req, res) {
 
     // Validação: Verificar se a palavra "nome" está no corpo da requisição
     if (!novoItem) {
-        return res.send('O corpo da requisição tem que conter a propriedade "nome".')
+        return res.status(400).send('O corpo da requisição tem que conter a propriedade "nome".')
     }
         
     // Validação: Verificar se o novo item já está na lista
     if (lista.includes(novoItem)) {
-        return res.send('Esse item já existe na lista.')
+        return res.status(409).send('Esse item já existe na lista.')
     }
 
     lista[id - 1] = novoItem // Atualizar na lista o novo item pelo id - 1
 
-    res.send('Item atualizado com sucesso!: ' + novoItem)
+    res.status(201).send('Item atualizado com sucesso!: ' + novoItem)
 })
 
 // Endpoint Delete: [DELETE] /personagem/:id
