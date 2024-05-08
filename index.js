@@ -59,4 +59,16 @@ app.put('/personagem/:id', function (req, res) {
     res.send('Item atualizado com sucesso!: ' + novoItem)
 })
 
+// Endpoint Delete: [DELETE] /personagem/:id
+// Requisição DELETE: http://localhost:3000/personagem/id
+app.delete('/personagem/:id', function (req, res) {
+    
+    const id = req.params.id // Acessar o parâmetro id
+
+    delete lista[id - 1] // Remover o item da lista usando id - 1
+
+    res.send('Item removido com sucesso!')
+})
+
+
 app.listen(3000)
