@@ -25,6 +25,10 @@ app.get('/personagem/:id', function (req, res) {
 
     const item = lista[id - 1] // Acessar o item da lista usando id - 1
 
+    if (!item) {
+        return res.status(404).send('Item não encontrado.')
+    }
+
     res.send(item)
 })
 
@@ -60,6 +64,11 @@ app.put('/personagem/:id', function (req, res) {
 
     const id = req.params.id // Acessar o parâmetro id
 
+    // Validação: Chegar se o item na requisição está na lista
+    if (!lista[id - 1]) {
+        return res.status(404).send('Item não encontrado.')
+    }
+
     const body = req.body // Acessar o corpo da requisição
     
     const novoItem = body.nome // Acessar a propriedade nome no corpo da requisião
@@ -84,6 +93,11 @@ app.put('/personagem/:id', function (req, res) {
 app.delete('/personagem/:id', function (req, res) {
     
     const id = req.params.id // Acessar o parâmetro id
+
+    // Validação: Chegar se o item na requisição está na lista
+    if (!lista[id - 1]) {
+        return res.status(404).send('Item não encontrado.')
+    }
 
     delete lista[id - 1] // Remover o item da lista usando id - 1
 
